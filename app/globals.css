@@ -3,25 +3,36 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary-color: green;
+  --primary-dark: #3d3d3d;
+  --primary-light: #f3f3f3;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  .h1-bold {
+    font-size: 1.8em;
+    font-weight: 700;
+    font-weight: bold;
+    /* font-family: var(--font-roboto); */
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .btn {
+    @apply bg-primary rounded-lg py-3 px-6 sm:px-3 hover:cursor-pointer hover:scale-125;
+  }
+
+  .bg-primary {
+    background-color: var(--primary-color);
+    color: #f3f3f3;
+  }
+
+  .bg-dark {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+  }
 }
