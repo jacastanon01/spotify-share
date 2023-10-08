@@ -1,23 +1,85 @@
 import Button from "@/components/Button";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
+import { authOptions } from "./api/auth/[[...nextauth]]/route";
+import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  // const session = useSession({
+  //   required: true,
+  //   onUnauthenticated: redirect("/api/auth/signin?callbackUrl=/"),
+  // });
+
+  // if (!session) redirect("/api/auth/signin?callbackUrl=/");
+
   return (
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    <main className="w-screen md:px-24 px-8 py-4 border-4 bg-black">
+    <main className="w-screen bg-dark-200">
       <section>Navbar</section>
-      <section className="h-screen flex bg-dark items-center mt-6 flex-col px-8">
-        <h1 className="h1-bold  my-6">Sharelist</h1>
-        <div className="flex flex-col items-center gap-5">
-          <p className="font-notoSerif">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia,
-            debitis, nulla, eveniet vitae magnam temporibus eaque odio
-            dignissimos neque sed ipsam? Tempora, et reiciendis? Voluptas
-            cupiditate accusantium culpa{" "}
-          </p>
-        </div>
-        <div className="flex">
-          <Button />
+      <section className="min-h-screen flex bg-dark items-center mt-6 flex-col px-8 bg-gradient-to-t-[linear-gradient(to top, var(--primary-color))]">
+        <div className="flex items-center flex-col mt-12 h-full gap-12 lg:px-8">
+          {session?.user ? (
+            <>
+              <h1 className="h1-bold  my-6">Authorized!</h1>
+              <div className="flex flex-col items-center gap-5">
+                <p className="font-notoSerif">
+                  Congratualtions! Your account is now registered with this app!
+                  Read more about how spotify handles OAuth and the standards
+                  <span className="font-semibold font-publicSans text-primary">
+                    <Link
+                      href="https://developer.spotify.com/documentation/web-api/tutorials/code-flow"
+                      target="_blank"
+                    >
+                      {" "}
+                      Here
+                    </Link>
+                  </span>{" "}
+                  And for more information about OAuth process in general
+                  <span className="font-semibold font-publicSans text-primary">
+                    <Link
+                      href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.1"
+                      target="_blank"
+                    >
+                      {" "}
+                      Click Here!
+                    </Link>
+                  </span>
+                </p>
+              </div>
+            </>
+          ) : (
+            <>
+              <Image
+                src="/assets/Spotify_logo.svg"
+                alt="spotify-logo"
+                height={250}
+                width={400}
+                className="border-2"
+              />
+              <Button
+                label="Log in with Spotify"
+                className="border-2 text-2xl font-publicSans font-bold"
+                redirectUrl="/api/auth/signin?callbackUrl=/"
+                //onClick={handleSpotifyAuth}
+                // event handlers can't be passed in server components. For interactivity use client component
+              />
+              <p className="text-white font-notoSarif lg:w-[650px]">
+                In order to share your music, you must authorize your spotify
+                account with this application. Spotify provides a third-party
+                client to handle authorization. Click above to sign in.{" "}
+                <span className="max-md:hidden">
+                  You will be prompted to log in which will trigger a request to
+                  their auth servers, and they will send an auth_code in the
+                  response. That code will be used in the callback request and
+                  once verified, the response will attach a session token to the
+                  user.
+                </span>
+              </p>
+            </>
+          )}
         </div>
       </section>
     </main>

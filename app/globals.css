@@ -23,7 +23,7 @@
   }
 
   .btn {
-    @apply bg-primary rounded-lg py-3 px-6 sm:px-3 hover:cursor-pointer hover:scale-125;
+    @apply bg-primary rounded-lg py-3 px-6 sm:px-3 hover:cursor-pointer hover:scale-110;
   }
 
   .bg-primary {
@@ -34,5 +34,10 @@
   .bg-dark {
     background-color: var(--primary-dark);
     color: var(--primary-light);
+  }
+
+  .bg-light {
+    background-color: var(--primary-light);
+    color: black;
   }
 }
