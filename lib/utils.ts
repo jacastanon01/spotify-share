@@ -24,3 +24,14 @@ export const generateCodeChallenge = async (codeVerifier: string) => {
 
   return base64encode(digest);
 };
+
+export const refreshAccessToken = async (token) => {
+  try {
+  } catch (error) {
+    console.log(error);
+    return {
+      ...token,
+      error,
+    };
+  }
+};
