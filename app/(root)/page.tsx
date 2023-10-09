@@ -1,20 +1,33 @@
 import Button from "@/components/Button";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
-import { authOptions } from "../api/auth/[[...nextauth]]/route";
+import { authOptions } from "@/lib/utils/authOptions";
+import { sessionUser } from "../api/auth/[[...nextauth]]/route";
 import { redirect } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { getProviders, useSession } from "next-auth/react";
 import Link from "next/link";
+import spotifyApi from "@/lib/utils/spotifyApi";
+import { refreshAccessToken } from "@/lib/utils/refreshAccessToken";
+import Center from "@/components/Center";
 
 const fetchData = async () => {
-  const response = await fetch("", {
-    headers: {},
+  const session: sessionUser | null = await getServerSession(authOptions);
+  const topTracks = await fetch("https://api.spotify.com/v1/me", {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${session?.user?.accessToken}`,
+    },
   });
+  console.log(topTracks.json());
+  return topTracks.json();
 };
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
-  console.log("SESSION OBJ: ", session);
+  const session: sessionUser | null = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
+  // const data = fetchData();
+  // console.log(data);
+
   // const session = useSession({
   //   required: true,
   //   onUnauthenticated: redirect("/api/auth/signin?callbackUrl=/"),
@@ -54,9 +67,10 @@ export default async function Home() {
       <section className="text-light-900 px-4 lg:px-8">Navbar</section>
       <section className="min-h-screen flex bg-dark items-center mt-6 flex-col bg-gradient-to-t-[linear-gradient(to top, var(--primary-color))]">
         <div className="flex items-center flex-col mt-12 h-full w-full gap-12 px-24">
-          {session?.user ? (
+          {session?.user?.accessToken ? (
             <>
               <h1 className="h1-bold my-2">Authorized!</h1>
+              <Button redirectUrl="/api/auth/signout" label="Sign out" />
               <section className="flex items-stretch gap-5 w-full">
                 <div className="flex flex-col justify-evenly">
                   {/* <UserList /> */}
@@ -65,6 +79,7 @@ export default async function Home() {
                   <li>User</li>
                   <li>User</li>
                 </div>
+                <Center session={session} />
                 <div className="flex-1 items-center bg-dark-400 text-light-850">
                   <div className="flex justify-between items-center w-full">
                     <p>Song name</p>
@@ -99,6 +114,7 @@ export default async function Home() {
                 className="border-2 text-2xl font-publicSans font-bold"
                 redirectUrl="/api/auth/signin?callbackUrl=/"
                 //onClick={handleSpotifyAuth}
+
                 // event handlers can't be passed in server components. For interactivity use client component
               />
               <p className="text-white font-notoSarif lg:w-[650px]">
