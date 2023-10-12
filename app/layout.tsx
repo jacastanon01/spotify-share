@@ -5,6 +5,7 @@ import { notoSerif, publicSans, roboto } from "@/fonts/fonts";
 import { SessionProvider } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/utils/authOptions";
+import Navbar from "@/components/ui/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,8 +30,10 @@ export default async function RootLayout({
           ${inter.className}
         `}
       >
-        {children}
-        {/* <SessionProvider session={session}>{children}</SessionProvider> */}
+        <main className="w-screen min-h-screen bg-dark-200">
+          <Navbar />
+          {children}
+        </main>
       </body>
     </html>
   );
