@@ -29,24 +29,7 @@ const Center = ({ session }: sessionProps) => {
   }, [session]);
 
   //   const session = getServerSession(authOptions);
-  return (
-    <div className="flex-grow">
-      <header className="absolute top-5">
-        <div className="rounded-xl border-light-500 w-full">
-          {session?.user && (
-            <div>
-              <Image
-                src={session?.user.image || ""}
-                alt="profile-pic"
-                className="rounded-lg w-5 h-5"
-              />
-              <p className="text-white">{session?.user?.username || "PETE"}</p>
-            </div>
-          )}
-        </div>
-      </header>
-    </div>
-  );
+  return <div className="flex"></div>;
 };
 
 export default Center;

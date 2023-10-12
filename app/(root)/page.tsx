@@ -9,24 +9,30 @@ import Link from "next/link";
 import spotifyApi from "@/lib/utils/spotifyApi";
 import { refreshAccessToken } from "@/lib/utils/refreshAccessToken";
 import Center from "@/components/Center";
-
-const fetchData = async () => {
-  const session: sessionUser | null = await getServerSession(authOptions);
-  const topTracks = await fetch("https://api.spotify.com/v1/me", {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${session?.user?.accessToken}`,
-    },
-  });
-  console.log(topTracks.json());
-  return topTracks.json();
-};
+import { headers } from "next/headers";
 
 export default async function Home() {
   const session: sessionUser | null = await getServerSession(authOptions);
   // const session = await getServerSession(authOptions);
   // const data = fetchData();
   // console.log(data);
+  const headersList = headers();
+  const authHeader = headersList.get("Authorization");
+  // console.log(headersList, authHeader, "!!!!!!!!");
+  const res = await fetch(
+    "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10",
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session?.user?.accessToken}`,
+      },
+    }
+  );
+  const topTracks = await res.json();
+
+  const fetchMoreInfo = await fetch(`https://api.spotify.com/v1/tracks?ids=`);
+
+  console.log("RESULTS: ", topTracks.items[0]);
 
   // const session = useSession({
   //   required: true,
@@ -34,6 +40,21 @@ export default async function Home() {
   // });
 
   // if (!session) redirect("/api/auth/signin?callbackUrl=/");
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const topTracks = await fetch("https://api.spotify.com/v1/me", {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${session?.user?.accessToken}`,
+  //       },
+  //     });
+  //     console.log(topTracks.json());
+  //     return topTracks.json();
+  //   };
+
+  //   fetchData();
+  // }, [session]);
 
   const moreInfo = (
     <p className="font-notoSerif">
@@ -63,9 +84,9 @@ export default async function Home() {
 
   return (
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    <main className="w-screen bg-dark-200">
+    <main className="w-screen min-h-screen bg-dark-200">
       <section className="text-light-900 px-4 lg:px-8">Navbar</section>
-      <section className="min-h-screen flex bg-dark items-center mt-6 flex-col bg-gradient-to-t-[linear-gradient(to top, var(--primary-color))]">
+      <section className="flex bg-dark items-center mt-6 flex-col bg-gradient-to-t-(--primary-color)]">
         <div className="flex items-center flex-col mt-12 h-full w-full gap-12 px-24">
           {session?.user?.accessToken ? (
             <>
@@ -74,14 +95,34 @@ export default async function Home() {
               <section className="flex items-stretch gap-5 w-full">
                 <div className="flex flex-col justify-evenly">
                   {/* <UserList /> */}
-                  <li>User</li>
-                  <li>User</li>
-                  <li>User</li>
-                  <li>User</li>
+                  {topTracks?.items.map((track) => {
+                    console.log(track.album.images[0].url);
+                    return (
+                      <li key={track.name}>
+                        {track.name} by {/* {track.artists} */}
+                        {track.artists.map(({ name, id }) => (
+                          <p key={id}>
+                            <Link
+                              href={track.external_urls.spotify}
+                              target="_blank"
+                            >
+                              {name}
+                            </Link>
+                          </p>
+                        ))}
+                        <Image
+                          src={track.album.images[0]}
+                          alt={track.name}
+                          height={123}
+                          width={118}
+                        />
+                      </li>
+                    );
+                  })}
                 </div>
-                <Center session={session} />
+                {/* <Center session={session} /> */}
                 <div className="flex-1 items-center bg-dark-400 text-light-850">
-                  <div className="flex justify-between items-center w-full">
+                  <div className="flex justify-between items-center w-full text-(--primary-color)">
                     <p>Song name</p>
                     <Image src="" alt="image" height={50} width={50} />
                   </div>
