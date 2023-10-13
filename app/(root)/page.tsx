@@ -13,6 +13,7 @@ import { headers } from "next/headers";
 import SpotifyLogo from "@/components/ui/SpotifyLogo";
 import Track from "@/components/playlist/Track";
 import { getToken } from "next-auth/jwt";
+import TopTracksForm from "@/components/form/TopTracksForm";
 
 const fetchArtists = async (artist) => {
   const session: sessionUser | null = await getServerSession(authOptions);
@@ -69,6 +70,8 @@ export default async function Home() {
       {session?.user?.accessToken ? (
         <div className=" px-8 md:px-24">
           <h1 className="h1-bold my-2">Authorized!</h1>
+          {/* <Home /> */}
+          <TopTracksForm />
           <section className="flex flex-col gap-5 overflow-y-scroll h-screen my-6">
             {/* <div className="flex flex-col w-full items-center"> */}
             {/* <UserList /> */}
