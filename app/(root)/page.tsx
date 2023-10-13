@@ -12,6 +12,11 @@ import Center from "@/components/Center";
 import { headers } from "next/headers";
 import SpotifyLogo from "@/components/ui/SpotifyLogo";
 import Track from "@/components/playlist/Track";
+import { getToken } from "next-auth/jwt";
+
+const fetchArtists = async (artist) => {
+  const session: sessionUser | null = await getServerSession(authOptions);
+};
 
 export default async function Home() {
   const session: sessionUser | null = await getServerSession(authOptions);
