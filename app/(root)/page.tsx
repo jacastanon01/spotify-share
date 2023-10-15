@@ -9,31 +9,36 @@ import Link from "next/link";
 import spotifyApi from "@/lib/utils/spotifyApi";
 import { refreshAccessToken } from "@/lib/utils/refreshAccessToken";
 import Center from "@/components/Center";
-import { headers } from "next/headers";
+// import { headers } from "next/headers";
 import SpotifyLogo from "@/components/ui/SpotifyLogo";
 import Track from "@/components/playlist/Track";
 import { getToken } from "next-auth/jwt";
 import TopTracksForm from "@/components/form/TopTracksForm";
+import { cache } from "react";
+import { fetchTracks } from "@/lib/utils/fetchTracks";
 
-const fetchArtists = async (artist) => {
-  const session: sessionUser | null = await getServerSession(authOptions);
-};
-
-export default async function Home() {
-  const session: sessionUser | null = await getServerSession(authOptions);
-  const headersList = headers();
-  const authHeader = headersList.get("Authorization");
-
+const getTracks = cache(async (accessToken: string | null | undefined) => {
   const res = await fetch(
     "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10",
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${session?.user?.accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     }
   );
-  const topTracks = await res.json();
+
+  const data = await res.json();
+
+  return data;
+});
+
+export default async function Home() {
+  const session: sessionUser | null = await getServerSession(authOptions);
+  // const headersList = headers();
+  // const authHeader = headersList.get("Authorization");
+
+  const topTracks = await fetchTracks({});
 
   const fetchMoreInfo = await fetch(`https://api.spotify.com/v1/tracks?ids=`);
 
@@ -76,7 +81,6 @@ export default async function Home() {
             {/* <div className="flex flex-col w-full items-center"> */}
             {/* <UserList /> */}
             {topTracks?.items.map((track) => {
-              console.log(typeof track);
               return <Track track={track} key={track.name} />;
             })}
             {/* </div> */}

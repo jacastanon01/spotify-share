@@ -3,25 +3,27 @@ import { getServerSession } from "next-auth";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async (req: NextRequest, res: NextResponse) => {
-  console.log("ROUTE");
+export const POST = async (req: NextRequest, res: NextResponse) => {
+  console.log("ROUTE", req.body);
   const session = await getServerSession(authOptions);
-  const tokenJ = await getToken({
+  const token = await getToken({
     req,
     secret: process.env.JWT_SECRET,
   });
   // console.log(token);
-  const { type, timeRange, limit, token } = req.body;
+  const search = req.nextUrl.searchParams;
+  console.log("SEARCH ", search);
+  const { searchType, timeRange, limit } = req.body;
   // const type = "track";
   // const timeRange = "long_term";
   // const limit = "10";
 
   const result = await fetch(
-    `https://api.spotify.com/v1/me/top/${type}?time_range=${timeRange}&limit=${limit}`,
+    `https://api.spotify.com/v1/me/top/${searchType}?time_range=${timeRange}_term&limit=${limit}`,
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token.accessToken}`,
       },
     }
   );

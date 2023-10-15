@@ -8,6 +8,9 @@ const nextConfig = {
                 pathname: "/image/**"
             }
         ]
+    },
+    experimental: {
+        serverActions: true
     }
 }
 

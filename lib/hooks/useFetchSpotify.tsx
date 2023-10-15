@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import spotifyApi from "../utils/spotifyApi";
 
 type fetchPropTypes = {
   token: string;

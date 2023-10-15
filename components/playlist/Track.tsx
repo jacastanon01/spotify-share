@@ -26,7 +26,6 @@ const Track = ({ track }) => {
       </Link>
       <p>{track.name} by: </p> {/* {track.artists} */}
       {track.artists.map(({ name, id }) => {
-        console.log(track.artists);
         return (
           <p className="text-primary font-bold" key={id}>
             <Link href={track.external_urls.spotify} target="_blank">

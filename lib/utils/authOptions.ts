@@ -7,14 +7,14 @@ import SpotifyProvider from "next-auth/providers/spotify";
 export const authOptions: NextAuthOptions = {
   providers: [
     SpotifyProvider<SpotifyProfile>({
-      clientId: process.env.SPOTIFY_CLIENT_ID || "",
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET || "",
+      clientId: process.env.SPOTIFY_CLIENT_ID ?? "",
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET ?? "",
       authorization: LOGIN_URL,
     }),
   ],
   secret: process.env.JWT_SECRET,
   callbacks: {
-    async jwt({ token, account, user }) {
+    async jwt({ token, user, account }) {
       // initial login
       console.log("JWT!!!!!!!!!!", account, user);
       if (account && user) {
@@ -25,6 +25,7 @@ export const authOptions: NextAuthOptions = {
           refreshToken: account.refresh_token,
           username: account.providerAccountId,
           accessTokenExpires: account.expires_at * 1000,
+          user,
         };
       } else if (Date.now() < token.accessTokenExpires) {
         // If the access token has not expired yet, return it
