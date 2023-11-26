@@ -26,6 +26,10 @@
     @apply bg-primary rounded-lg py-3 px-6 sm:px-3 hover:cursor-pointer hover:scale-110;
   }
 
+  .form-input {
+    @apply bg-light-400 font-semibold font-inter;
+  }
+
   .bg-primary {
     background-color: var(--primary-color);
     color: #f3f3f3;

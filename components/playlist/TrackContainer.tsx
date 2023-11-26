@@ -1,6 +1,6 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
 
 type trackProps = {
   name: string;
@@ -15,8 +15,8 @@ type trackProps = {
 
 const TrackContainer = ({ track }) => {
   return (
-    <div className="flex gap-5" key={track.name}>
-      <Link href={track.album.external_urls.spotify} target="_blank">
+    <div className='flex gap-5 bg-dark-500'>
+      <Link href={track.album.external_urls.spotify} target='_blank'>
         <Image
           src={track && track.album.images[0].url}
           alt={track.name}
@@ -25,13 +25,15 @@ const TrackContainer = ({ track }) => {
         />
       </Link>
       <p>{track.name} by: </p> {/* {track.artists} */}
-      {track.artists.map(({ name, id }) => (
-        <p className="text-primary font-bold" key={id}>
-          <Link href={track.external_urls.spotify} target="_blank">
-            {name}
-          </Link>
-        </p>
-      ))}
+      {track.artists.map(
+        ({ name, id }: { name: string; id: string }) => (
+          <p className='text-primary font-bold' key={id}>
+            <Link href={track.external_urls.spotify} target='_blank'>
+              {name}
+            </Link>
+          </p>
+        )
+      )}
     </div>
   );
 };

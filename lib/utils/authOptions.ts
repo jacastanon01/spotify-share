@@ -1,14 +1,14 @@
-import { NextAuthOptions } from "next-auth";
-import { SpotifyProfile } from "next-auth/providers/spotify";
-import { refreshAccessToken } from "./refreshAccessToken";
-import spotifyApi, { LOGIN_URL } from "./spotifyApi";
-import SpotifyProvider from "next-auth/providers/spotify";
+import { NextAuthOptions } from 'next-auth';
+import { SpotifyProfile } from 'next-auth/providers/spotify';
+import { refreshAccessToken } from './refreshAccessToken';
+import spotifyApi, { LOGIN_URL } from './spotifyApi';
+import SpotifyProvider from 'next-auth/providers/spotify';
 
 export const authOptions: NextAuthOptions = {
   providers: [
     SpotifyProvider<SpotifyProfile>({
-      clientId: process.env.SPOTIFY_CLIENT_ID ?? "",
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET ?? "",
+      clientId: process.env.SPOTIFY_CLIENT_ID ?? '',
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET ?? '',
       authorization: LOGIN_URL,
     }),
   ],
@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user, account }) {
       // initial login
-      console.log("JWT!!!!!!!!!!", account, user);
+      // console.log("JWT!!!!!!!!!!", account, user);
       if (account && user) {
         // Save the access token and refresh token in the JWT on the initial login
         return {
@@ -29,11 +29,11 @@ export const authOptions: NextAuthOptions = {
         };
       } else if (Date.now() < token.accessTokenExpires) {
         // If the access token has not expired yet, return it
-        console.log("EXISTING ACCESS TOKEN IS VALID");
+        console.log('EXISTING ACCESS TOKEN IS VALID');
         return token;
       } else {
         // If the access token has expired, try to refresh it
-        console.log("REFRESHING TOKEN NOW");
+        console.log('REFRESHING TOKEN NOW');
         return await refreshAccessToken(token);
       }
     },
