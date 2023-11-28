@@ -7,7 +7,7 @@ const SpotifyLogo = () => {
         src='/assets/Spotify_logo.svg'
         alt='spotify-logo'
         fill
-        className='border-2'
+        className='object-contain'
       />
     </>
   );

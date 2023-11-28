@@ -33,3 +33,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
   return NextResponse.json({ data });
 };
+
+export const GET = async (req: NextRequest) => {
+  console.log('search params: ', req.nextUrl.searchParams);
+};

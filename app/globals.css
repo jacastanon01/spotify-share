@@ -27,7 +27,11 @@
   }
 
   .form-input {
-    @apply bg-light-400 font-semibold font-inter;
+    @apply flex flex-col justify-between lg:rounded-xl py-3 px-5 bg-dark-400 font-semibold font-inter;
+  }
+
+  .input {
+    @apply w-full my-3 px-3 py-1 rounded-lg bg-dark-500 text-light-850 active:outline-none focus:outline-none appearance-none;
   }
 
   .bg-primary {
@@ -43,5 +47,13 @@
   .bg-light {
     background-color: var(--primary-light);
     color: black;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
   }
 }

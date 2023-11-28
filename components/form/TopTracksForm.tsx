@@ -11,38 +11,42 @@ const TopTracksForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('SUBMiTTING...');
-    // const { items } = await fetchTracks({
-    //   searchType,
-    //   timeRange,
-    //   limit,
-    // });
-    // setTracks(items);
-    // console.log(items);
+    // const res = await fetch(
+    //   `http://localhost:3000/api?searchType=${searchType}&timeRange=${timeRange}&limit=${limit}`
+    // );
+    // const data = await res.json();
+
     router.push(
       `?searchType=${searchType}&timeRange=${timeRange}&limit=${limit}`
     );
   };
 
+  // ? prompt: Find my top ${limit} ${searchType} that I listened to ${timeRange} ago
+
   return (
-    <form className='' onSubmit={handleSubmit}>
-      <div className='flex flex-col p-4 text-dark-300 bg-light-500 gap-5'>
-        <section className='flex max-lg:flex-col lg:justify-evenly lg:items-center gap-4'>
+    <div className=''>
+      <section className='w-full'>
+        <form
+          className='w-full flex flex-col justify-evenly lg:flex-row'
+          onSubmit={handleSubmit}
+        >
           <div className='form-input'>
-            <p>Choose what to search</p>
+            <p className=''>Choose what to search</p>
             <select
               value={searchType}
               onChange={(e) => setSearchType(e.target.value)}
-              className='w-full text-black'
+              className='w-full input text-black'
             >
               <option value='artists'>Artists</option>
               <option value='tracks'>Tracks</option>
             </select>
           </div>
           <div className='form-input'>
-            <p>Choose the songs that defined these times</p>
+            <p className=''>
+              Choose the songs that defined these times
+            </p>
             <select
-              className='w-full'
+              className='w-full input'
               value={timeRange}
               onChange={(e) => {
                 setTimeRange(e.target.value);
@@ -55,8 +59,9 @@ const TopTracksForm = () => {
             </select>
           </div>
           <div className='form-input'>
-            <p>How many songs?</p>
+            <p className=''>How many songs?</p>
             <input
+              className='input'
               type='number'
               min='1'
               max='50'
@@ -66,14 +71,14 @@ const TopTracksForm = () => {
               }
             />
           </div>
-        </section>
-        <section className='self-center'>
-          <button className='btn font-bold' type='submit'>
-            Submit
-          </button>
-        </section>
-      </div>
-    </form>
+        </form>
+      </section>
+      <section className='flex w-full justify-center'>
+        <button className='mt-6 btn font-bold' type='submit'>
+          Get {searchType}
+        </button>
+      </section>
+    </div>
   );
 };
 

@@ -15,7 +15,7 @@ type trackProps = {
 
 const TrackContainer = ({ track }) => {
   return (
-    <div className='flex gap-5 bg-dark-500'>
+    <div className='flex mt-4 sm:mt-14 gap-6 bg-dark-500'>
       <Link href={track.album.external_urls.spotify} target='_blank'>
         <Image
           src={track && track.album.images[0].url}

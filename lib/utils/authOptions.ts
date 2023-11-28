@@ -3,6 +3,13 @@ import { SpotifyProfile } from 'next-auth/providers/spotify';
 import { refreshAccessToken } from './refreshAccessToken';
 import spotifyApi, { LOGIN_URL } from './spotifyApi';
 import SpotifyProvider from 'next-auth/providers/spotify';
+import { DefaultSession } from 'next-auth';
+
+interface sessionUser extends DefaultSession {
+  user: {
+    accessToken?: string;
+  };
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
