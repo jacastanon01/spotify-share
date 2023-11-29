@@ -73,11 +73,11 @@ export type SpotifyApiResponseType = {
   items: SpotifyArtistType | SpotifyTrackType;
 };
 
-export enum TimeRangeEnum {
-  LONG,
-  MEDIUM,
-  SHORT,
-}
+// export enum TimeRangeEnum {
+//   LONG,
+//   MEDIUM,
+//   SHORT,
+// }
 
 // export type SpotifyApiResponseType<T> = T extends {
 //   items: { type: 'track' };

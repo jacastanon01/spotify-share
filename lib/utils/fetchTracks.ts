@@ -5,7 +5,7 @@ import { authOptions } from './authOptions';
 import spotifyApi from './spotifyApi';
 
 export const fetchTracks = async ({
-  searchType = 'artists',
+  searchType = 'tracks',
   timeRange = 'long',
   limit = '10',
 }) => {

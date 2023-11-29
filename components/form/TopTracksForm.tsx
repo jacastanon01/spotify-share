@@ -1,25 +1,27 @@
 'use client';
 
 import React, { FormEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { SpotifyApiResponseType } from '@/types';
 
 const TopTracksForm = () => {
-  const [searchType, setSearchType] = useState<'tracks' | 'artists'>(
-    'tracks'
+  const searchParams = useSearchParams();
+  console.log('search params: ', searchParams.get('searchType'));
+  const [searchType, setSearchType] = useState(
+    searchParams.get('searchType') || 'tracks'
   );
-  const [timeRange, setTimeRange] = useState('long');
-  const [limit, setLimit] = useState('');
+  const [timeRange, setTimeRange] = useState(
+    searchParams.get('timeRange') || 'long'
+  );
+  const [limit, setLimit] = useState(
+    searchParams.get('limit') || '10'
+  );
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     console.log('CLICK');
     e.preventDefault();
-    // const res = await fetch(
-    //   `http://localhost:3000/api?searchType=${searchType}&timeRange=${timeRange}&limit=${limit}`
-    // );
-    // const data = await res.json();
 
     router.push(
       `?searchType=${searchType}&timeRange=${timeRange}&limit=${limit}`
