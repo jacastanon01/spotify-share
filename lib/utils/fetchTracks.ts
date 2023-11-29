@@ -5,9 +5,9 @@ import { authOptions } from './authOptions';
 import spotifyApi from './spotifyApi';
 
 export const fetchTracks = async ({
-  searchType = 'tracks',
+  searchType = 'artists',
   timeRange = 'long',
-  limit = '20',
+  limit = '10',
 }) => {
   const session = await getServerSession(authOptions);
   const access = spotifyApi.getAccessToken();
@@ -22,6 +22,5 @@ export const fetchTracks = async ({
     }
   );
   const data = await res.json();
-  // console.log(data);
   return data;
 };

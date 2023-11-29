@@ -2,6 +2,7 @@
 // TODO: clean up layout
 // TODO: store search params in url for
 import { getServerSession } from 'next-auth';
+import { Suspense } from 'react';
 
 import { authOptions } from '@/lib/utils/authOptions';
 import { sessionUser } from '../api/auth/[[...nextauth]]/route';
@@ -10,6 +11,9 @@ import { fetchTracks } from '@/lib/utils/fetchTracks';
 import Navbar from '@/components/navbar/Navbar';
 import TrackContainer from '@/components/playlist/TrackContainer';
 import NoAuthHome from '@/components/home/NoAuthHome';
+import Track from '@/components/playlist/Track';
+import { SpotifyApiResponseType } from '@/types';
+import FetchTracksFromApi from '@/components/home/FetchTracksFromApi';
 
 export default async function Home({
   searchParams,
@@ -26,14 +30,6 @@ export default async function Home({
     return <NoAuthHome />;
   }
 
-  const { searchType, timeRange, limit } = searchParams;
-
-  const topTracks = await fetchTracks({
-    searchType,
-    timeRange,
-    limit,
-  });
-
   return (
     <div className='flex flex-col px-8 md:px-24'>
       {/* <Home /> */}
@@ -43,16 +39,9 @@ export default async function Home({
 
         {/* <div className="flex flex-col w-full items-center"> */}
         {/* <UserList /> */}
-        {/* <Suspense fallback={'loading...'}> */}
-        {topTracks ? (
-          topTracks?.items.map((track) => (
-            <TrackContainer key={track.name} track={track} />
-            // <Track track={track} key={track.name} />
-          ))
-        ) : (
-          <div>Search for something</div>
-        )}
-        {/* </Suspense> */}
+        <Suspense fallback={'loading...'}>
+          <FetchTracksFromApi searchParams={searchParams} />
+        </Suspense>
 
         {/* </div> */}
         {/* <Center session={session} /> */}

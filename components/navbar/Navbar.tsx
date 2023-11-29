@@ -5,11 +5,13 @@ import Button from '../ui/Button';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/utils/authOptions';
 import { sessionUser } from '@/app/api/auth/[[...nextauth]]/route';
+import { SpotifyApiResponseType } from '@/types';
 
 const Navbar = async () => {
   const session: sessionUser | null = await getServerSession(
     authOptions
   );
+
   return (
     <header className='relative text-light-900p-4 lg:px-8'>
       <nav className='flex justify-between items-center'>

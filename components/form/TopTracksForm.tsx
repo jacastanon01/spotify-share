@@ -2,6 +2,7 @@
 
 import React, { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { SpotifyApiResponseType } from '@/types';
 
 const TopTracksForm = () => {
   const [searchType, setSearchType] = useState('tracks');
@@ -10,6 +11,7 @@ const TopTracksForm = () => {
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    console.log('CLICK');
     e.preventDefault();
     // const res = await fetch(
     //   `http://localhost:3000/api?searchType=${searchType}&timeRange=${timeRange}&limit=${limit}`
@@ -25,11 +27,8 @@ const TopTracksForm = () => {
 
   return (
     <div className=''>
-      <section className='w-full'>
-        <form
-          className='w-full flex flex-col justify-evenly lg:flex-row'
-          onSubmit={handleSubmit}
-        >
+      <form className='w-full' onSubmit={handleSubmit}>
+        <section className='w-full flex flex-col justify-evenly lg:flex-row'>
           <div className='form-input'>
             <p className=''>Choose what to search</p>
             <select
@@ -71,13 +70,14 @@ const TopTracksForm = () => {
               }
             />
           </div>
-        </form>
-      </section>
-      <section className='flex w-full justify-center'>
-        <button className='mt-6 btn font-bold' type='submit'>
-          Get {searchType}
-        </button>
-      </section>
+        </section>
+
+        <div className='w-full mt-10 flex justify-center'>
+          <button className='btn font-bold' type='submit'>
+            Get {searchType}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
