@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import { redirect } from "next/navigation";
-import Link from "next/link";
+'use client';
+import React from 'react';
+import { redirect } from 'next/navigation';
+import Link from 'next/link';
 
 const Button = ({ ...props }) => {
   const { className, onClick, onSign, label, redirectUrl } = props;

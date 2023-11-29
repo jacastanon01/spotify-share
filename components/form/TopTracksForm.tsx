@@ -9,14 +9,12 @@ const TopTracksForm = () => {
   const searchParams = useSearchParams();
   console.log('search params: ', searchParams.get('searchType'));
   const [searchType, setSearchType] = useState(
-    searchParams.get('searchType') || 'tracks'
+    searchParams.get('searchType') || 'tracks',
   );
   const [timeRange, setTimeRange] = useState(
-    searchParams.get('timeRange') || 'long'
+    searchParams.get('timeRange') || 'long',
   );
-  const [limit, setLimit] = useState(
-    searchParams.get('limit') || '10'
-  );
+  const [limit, setLimit] = useState(searchParams.get('limit') || '10');
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -24,7 +22,7 @@ const TopTracksForm = () => {
     e.preventDefault();
 
     router.push(
-      `?searchType=${searchType}&timeRange=${timeRange}&limit=${limit}`
+      `?searchType=${searchType}&timeRange=${timeRange}&limit=${limit}`,
     );
   };
 
@@ -33,7 +31,7 @@ const TopTracksForm = () => {
   return (
     <div className=''>
       <form className='w-full' onSubmit={handleSubmit}>
-        <section className='w-full flex flex-col justify-evenly lg:flex-row'>
+        <section className='flex w-full flex-col justify-evenly lg:flex-row'>
           <div className='form-input'>
             <p className=''>Choose what to search</p>
             <select
@@ -41,18 +39,16 @@ const TopTracksForm = () => {
               onChange={(e) =>
                 setSearchType(e.target.value as 'artists' | 'tracks')
               }
-              className='w-full input text-black'
+              className='input text-black w-full'
             >
               <option value='artists'>Artists</option>
               <option value='tracks'>Tracks</option>
             </select>
           </div>
           <div className='form-input'>
-            <p className=''>
-              Choose the {searchType} that defined these times
-            </p>
+            <p className=''>Choose the {searchType} that defined these times</p>
             <select
-              className='w-full input'
+              className='input w-full'
               value={timeRange}
               onChange={(e) => {
                 setTimeRange(e.target.value);
@@ -79,7 +75,7 @@ const TopTracksForm = () => {
           </div>
         </section>
 
-        <div className='w-full mt-10 flex justify-center'>
+        <div className='mt-10 flex w-full justify-center'>
           <button className='btn font-bold' type='submit'>
             Get {searchType}
           </button>

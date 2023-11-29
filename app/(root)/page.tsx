@@ -22,9 +22,7 @@ export default async function Home({
     [key: string]: string | undefined;
   };
 }) {
-  const session: sessionUser | null = await getServerSession(
-    authOptions
-  );
+  const session: sessionUser | null = await getServerSession(authOptions);
 
   if (!session?.user?.accessToken) {
     return <NoAuthHome />;
@@ -33,7 +31,7 @@ export default async function Home({
   return (
     <div className='flex flex-col px-8 md:px-24'>
       <Navbar />
-      <section className='flex w-full relative flex-col gap-5 mx-auto my-6'>
+      <section className='relative mx-auto my-6 flex w-full flex-col gap-5'>
         <TopTracksForm />
         <FetchTracksFromApi searchParams={searchParams} />
       </section>

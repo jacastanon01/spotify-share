@@ -12,12 +12,11 @@ const FetchTracksFromApi = async ({
 }) => {
   const { searchType, timeRange, limit } = searchParams;
 
-  const topTracks: Array<SpotifyApiResponseType['items']> =
-    await fetchTracks({
-      searchType,
-      timeRange,
-      limit,
-    });
+  const topTracks: Array<SpotifyApiResponseType['items']> = await fetchTracks({
+    searchType,
+    timeRange,
+    limit,
+  });
 
   return (
     <div>

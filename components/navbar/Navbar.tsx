@@ -8,14 +8,12 @@ import { sessionUser } from '@/app/api/auth/[[...nextauth]]/route';
 import { SpotifyApiResponseType } from '@/types';
 
 const Navbar = async () => {
-  const session: sessionUser | null = await getServerSession(
-    authOptions
-  );
+  const session: sessionUser | null = await getServerSession(authOptions);
 
   return (
-    <header className='relative text-light-900p-4 lg:px-8'>
-      <nav className='flex justify-between items-center'>
-        <div className=' z-20 mx-4 mt-[-18px] h-[150px] w-[150px] flex items-center justify-center rounded-lg bg-white opacity-90 p-4 backdrop-blur-md'>
+    <header className='text-light-900p-4 relative lg:px-8'>
+      <nav className='flex items-center justify-between'>
+        <div className=' bg-white z-20 mx-4 mt-[-18px] flex h-[150px] w-[150px] items-center justify-center rounded-lg p-4 opacity-90 backdrop-blur-md'>
           <Link
             href='https://spotify.com'
             target='_blank'

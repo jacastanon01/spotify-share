@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import spotifyApi from "../utils/spotifyApi";
+import { useEffect, useState } from 'react';
+import spotifyApi from '../utils/spotifyApi';
 
 type fetchPropTypes = {
   token: string;
@@ -12,8 +12,8 @@ type fetchPropTypes = {
 
 const useFetchSpotify = ({
   token,
-  timeRange = "long_term",
-  limit = "10",
+  timeRange = 'long_term',
+  limit = '10',
   type,
 }: fetchPropTypes) => {
   const [data, setData] = useState();
@@ -23,11 +23,11 @@ const useFetchSpotify = ({
         `https://api.spotify.com/v1/me/top/${type}?time_range=${timeRange}&limit=${limit}`,
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
             // Authorization: `Bearer ${session?.user?.accessToken}`,
           },
-        }
+        },
       );
 
       const result = await res.json();

@@ -1,11 +1,11 @@
-import spotifyApi from "./spotifyApi";
+import spotifyApi from './spotifyApi';
 
 export const refreshAccessToken = async (token) => {
   try {
     spotifyApi.setAccessToken(token.accessToken);
     spotifyApi.setRefreshToken(token.refreshToken);
     const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
-    console.log("REFRESHED TOKEN: ", refreshedToken);
+    console.log('REFRESHED TOKEN: ', refreshedToken);
 
     return {
       ...token,
@@ -17,7 +17,7 @@ export const refreshAccessToken = async (token) => {
     console.log(error);
     return {
       ...token,
-      error: "RefreshAccessToken error",
+      error: 'RefreshAccessToken error',
     };
   }
 };

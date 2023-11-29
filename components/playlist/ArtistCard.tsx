@@ -7,19 +7,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const ArtistCard = ({
-  track,
-}: {
-  track: SpotifyApiResponseType['items'];
-}) => {
+const ArtistCard = ({ track }: { track: SpotifyApiResponseType['items'] }) => {
   return (
-    <article className='w-full flex justify-center p-4'>
+    <article className='flex w-full justify-center p-4'>
       <Link
         href={track.href}
         target='_blank'
-        className='flex flex-col gap-6 items-center justify-between md:justify-center '
+        className='flex flex-col items-center justify-between gap-6 md:justify-center '
       >
-        <p className='font-bold font-inter text-5xl'>{track.name}</p>
+        <p className='font-inter text-5xl font-bold'>{track.name}</p>
         {'images' in track && track.images && (
           <div
             className='relative h-96 w-96 rounded-lg'
@@ -29,7 +25,7 @@ const ArtistCard = ({
               src={track.images[0].url}
               alt={track.images[0].url}
               fill
-              className='object-contain rounded-lg'
+              className='rounded-lg object-contain'
             />
           </div>
         )}

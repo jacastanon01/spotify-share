@@ -25,7 +25,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token.accessToken}`,
       },
-    }
+    },
   );
 
   const data = await result.json();

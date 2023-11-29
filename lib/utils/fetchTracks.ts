@@ -19,7 +19,7 @@ export const fetchTracks = async ({
         //   "Content-Type": "application/json",
         Authorization: `Bearer ${session?.user?.accessToken}`,
       },
-    }
+    },
   );
   const data = await res.json();
   return data.items;
