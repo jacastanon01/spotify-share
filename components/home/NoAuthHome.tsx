@@ -4,7 +4,7 @@ import SpotifyLogo from '../ui/SpotifyLogo';
 
 const NoAuthHome = () => {
   return (
-    <div className='flex items-center flex-col mt-12 h-screen w-full gap-12'>
+    <div className='flex items-center flex-col mt-12 w-full gap-12'>
       <div className=''>
         <div className='relative h-[150px] w-[150px]'>
           <SpotifyLogo />

@@ -2,10 +2,13 @@
 
 import React, { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
+
 import { SpotifyApiResponseType } from '@/types';
 
 const TopTracksForm = () => {
-  const [searchType, setSearchType] = useState('tracks');
+  const [searchType, setSearchType] = useState<'tracks' | 'artists'>(
+    'tracks'
+  );
   const [timeRange, setTimeRange] = useState('long');
   const [limit, setLimit] = useState('');
   const router = useRouter();
@@ -33,7 +36,9 @@ const TopTracksForm = () => {
             <p className=''>Choose what to search</p>
             <select
               value={searchType}
-              onChange={(e) => setSearchType(e.target.value)}
+              onChange={(e) =>
+                setSearchType(e.target.value as 'artists' | 'tracks')
+              }
               className='w-full input text-black'
             >
               <option value='artists'>Artists</option>
@@ -42,7 +47,7 @@ const TopTracksForm = () => {
           </div>
           <div className='form-input'>
             <p className=''>
-              Choose the songs that defined these times
+              Choose the {searchType} that defined these times
             </p>
             <select
               className='w-full input'
@@ -58,12 +63,12 @@ const TopTracksForm = () => {
             </select>
           </div>
           <div className='form-input'>
-            <p className=''>How many songs?</p>
+            <p className=''>How many {searchType}?</p>
             <input
               className='input'
               type='number'
               min='1'
-              max='50'
+              max='20'
               value={limit}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setLimit(e.target.value)

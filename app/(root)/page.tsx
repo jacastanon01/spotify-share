@@ -32,19 +32,10 @@ export default async function Home({
 
   return (
     <div className='flex flex-col px-8 md:px-24'>
-      {/* <Home /> */}
       <Navbar />
       <section className='flex w-full relative flex-col gap-5 mx-auto my-6'>
         <TopTracksForm />
-
-        {/* <div className="flex flex-col w-full items-center"> */}
-        {/* <UserList /> */}
-        <Suspense fallback={'loading...'}>
-          <FetchTracksFromApi searchParams={searchParams} />
-        </Suspense>
-
-        {/* </div> */}
-        {/* <Center session={session} /> */}
+        <FetchTracksFromApi searchParams={searchParams} />
       </section>
     </div>
   );
