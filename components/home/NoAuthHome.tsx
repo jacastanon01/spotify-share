@@ -14,6 +14,7 @@ const NoAuthHome = () => {
         label='Log in with Spotify'
         className='border-2 font-publicSans text-2xl font-bold'
         redirectUrl='/api/auth/signin?callbackUrl=/'
+        login={true}
         //onClick={handleSpotifyAuth}
 
         // event handlers can't be passed in server components. For interactivity use client component

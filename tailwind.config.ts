@@ -8,29 +8,29 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    colors: {
-      primary: '#1DB954',
-      secondary: '#191414',
-      dark: {
-        100: '#000000',
-        200: '#0F1117',
-        300: '#151821',
-        400: '#212734',
-        500: '#343434',
-      },
-      light: {
-        900: '#FFFFFF',
-        800: '#F4F6F8',
-        850: '#FDFDFD',
-        700: '#DCE3F1',
-        500: '#7B8EC8',
-        400: '#858EAD',
-      },
-      green: {
-        400: '#48e07d',
-      },
-    },
     extend: {
+      colors: {
+        primary: '#1DB954',
+        secondary: '#191414',
+        dark: {
+          100: '#000000',
+          200: '#0F1117',
+          300: '#151821',
+          400: '#212734',
+          500: '#343434',
+        },
+        light: {
+          900: '#FFFFFF',
+          800: '#F4F6F8',
+          850: '#FDFDFD',
+          700: '#DCE3F1',
+          500: '#7B8EC8',
+          400: '#858EAD',
+        },
+        green: {
+          400: '#48e07d',
+        },
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

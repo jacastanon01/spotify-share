@@ -31,7 +31,7 @@ export default async function RootLayout({
           ${inter.className}
         `}
       >
-        <main className='to-99% m-0 flex min-h-screen flex-col bg-gradient-to-tr from-primary from-60% via-green-400 via-60% to-secondary font-publicSans text-light-850'>
+        <main className='to-99% m-0 flex min-h-screen flex-col bg-gradient-to-tr from-primary from-60% via-green-400 via-[calc(60%+1px)] to-secondary font-publicSans text-light-850'>
           {children}
         </main>
       </body>

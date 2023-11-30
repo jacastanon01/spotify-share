@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('../styles/audio.css');
+
 :root {
   --primary-color: green;
   --primary-dark: #3d3d3d;
@@ -19,19 +21,19 @@
 
 @layer utilities {
   .flex-center {
-    @apply flex justify-center items-center;
+    @apply flex items-center justify-center;
   }
 
   .btn {
-    @apply bg-primary rounded-lg py-3 px-6 sm:px-3 hover:cursor-pointer hover:scale-110;
+    @apply rounded-lg bg-primary px-6 py-3 hover:scale-110 hover:cursor-pointer sm:px-3;
   }
 
   .form-input {
-    @apply flex flex-col justify-between lg:rounded-xl py-3 px-5 bg-dark-400 font-semibold font-inter;
+    @apply flex flex-col justify-between bg-dark-400 px-5 py-3 font-inter font-semibold lg:rounded-xl;
   }
 
   .input {
-    @apply w-full my-3 px-3 py-1 rounded-lg bg-dark-500 text-light-850 active:outline-none focus:outline-none appearance-none;
+    @apply bg-inherit out-of-range:text-red-500 hover:bg-white mx-auto inline max-w-fit appearance-none rounded-xl px-[0.1rem] text-primary hover:cursor-pointer focus:outline-none;
   }
 
   .bg-primary {

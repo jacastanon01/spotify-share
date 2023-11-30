@@ -29,9 +29,47 @@ const TopTracksForm = () => {
   // ? prompt: Find my top ${limit} ${searchType} that I listened to ${timeRange} ago
 
   return (
-    <div className=''>
-      <form className='w-full' onSubmit={handleSubmit}>
-        <section className='flex w-full flex-col justify-evenly lg:flex-row'>
+    <form
+      className='flex w-full flex-col justify-center'
+      onSubmit={handleSubmit}
+    >
+      <p className=' w-fit space-x-2 rounded-lg bg-dark-500 px-4 py-2 text-2xl max-md:leading-relaxed sm:text-5xl'>
+        Find
+        <input
+          className='input text-center'
+          type='number'
+          min='1'
+          max='20'
+          value={limit}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setLimit(e.target.value)
+          }
+        />
+        <select
+          value={searchType}
+          onChange={(e) =>
+            setSearchType(e.target.value as 'artists' | 'tracks')
+          }
+          className='input'
+        >
+          <option value='artists'>Artists</option>
+          <option value='tracks'>Tracks</option>
+        </select>{' '}
+        that I listened to most these past
+        <select
+          className='input'
+          value={timeRange}
+          onChange={(e) => {
+            setTimeRange(e.target.value);
+            console.log(timeRange, searchType, limit);
+          }}
+        >
+          <option value='long'>couple years</option>
+          <option value='medium'>6 months</option>
+          <option value='short'>4 weeks</option>
+        </select>
+      </p>
+      {/* <section className='flex w-full flex-col justify-evenly lg:flex-row'>
           <div className='form-input'>
             <p className=''>Choose what to search</p>
             <select
@@ -73,15 +111,14 @@ const TopTracksForm = () => {
               }
             />
           </div>
-        </section>
+        </section> */}
 
-        <div className='mt-10 flex w-full justify-center'>
-          <button className='btn font-bold' type='submit'>
-            Get {searchType}
-          </button>
-        </div>
-      </form>
-    </div>
+      <div className='mt-10 flex w-full justify-center'>
+        <button className='btn font-bold' type='submit'>
+          Get {searchType}
+        </button>
+      </div>
+    </form>
   );
 };
 

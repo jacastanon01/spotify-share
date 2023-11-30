@@ -11,8 +11,6 @@ import { fetchTracks } from '@/lib/utils/fetchTracks';
 import Navbar from '@/components/navbar/Navbar';
 import TrackContainer from '@/components/playlist/TrackContainer';
 import NoAuthHome from '@/components/home/NoAuthHome';
-import Track from '@/components/playlist/Track';
-import { SpotifyApiResponseType } from '@/types';
 import FetchTracksFromApi from '@/components/home/FetchTracksFromApi';
 
 export default async function Home({
@@ -29,9 +27,9 @@ export default async function Home({
   }
 
   return (
-    <div className='flex flex-col px-8 md:px-24'>
+    <div className='flex flex-col md:px-24'>
       <Navbar />
-      <section className='relative mx-auto my-6 flex w-full flex-col gap-5'>
+      <section className='relative mx-auto my-16 flex w-full flex-col gap-5 px-8'>
         <TopTracksForm />
         <FetchTracksFromApi searchParams={searchParams} />
       </section>

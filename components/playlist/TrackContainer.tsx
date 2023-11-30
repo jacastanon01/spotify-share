@@ -11,7 +11,7 @@ const TrackContainer = ({
   track: SpotifyApiResponseType['items'];
 }) => {
   return (
-    <div className='mt-4 flex justify-center gap-6 rounded-xl bg-dark-500 sm:mt-14 md:mx-20'>
+    <div className='mt-4 flex justify-center gap-6 rounded-xl bg-dark-500 sm:mt-14'>
       {track && (
         <>
           {track.type === 'artist' ? (
