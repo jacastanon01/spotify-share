@@ -1,6 +1,8 @@
+import { TokenType } from '@/types';
 import spotifyApi from './spotifyApi';
 
-export const refreshAccessToken = async (token) => {
+export const refreshAccessToken = async (token: TokenType) => {
+  console.log('TOKEN IN REFRESH: ', token);
   try {
     spotifyApi.setAccessToken(token.accessToken);
     spotifyApi.setRefreshToken(token.refreshToken);

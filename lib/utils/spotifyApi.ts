@@ -1,12 +1,5 @@
 import SpotifyWebApi from 'spotify-web-api-node';
-
-let scopes = [
-  'user-read-recently-played',
-  'user-top-read',
-  'streaming',
-  'playlist-read-collaborative',
-  'playlist-modify-public',
-].join(',');
+import { scopes } from '@/constants/spotifyScopes';
 
 const params = {
   scope: scopes,

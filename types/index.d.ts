@@ -1,3 +1,16 @@
+export type TokenType = {
+  name: string;
+  sub?: string | null;
+  accessToken: string;
+  refreshToken: string;
+  username: string | null;
+  accessTokenExpires: number;
+  user: { id: string | null; name: string | null };
+  iat: number;
+  exp: number;
+  jti: string;
+};
+
 type SpotifyImageType = {
   height: number;
   url: string;
