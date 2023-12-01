@@ -1,10 +1,36 @@
 import Link from 'next/link';
 import React from 'react';
 
-import { SpotifyApiResponseType, SpotifyArtistType } from '@/types';
+import {
+  SpotifyApiResponseType,
+  SpotifyArtistType,
+  SpotifyImageType,
+  SpotifyTrackType,
+} from '@/types';
 import Image from 'next/image';
+import spotifyApi from '@/lib/utils/spotifyApi';
+import { getArtistById } from '@/lib/utils';
 
-const TrackCard = ({ track }: { track: SpotifyApiResponseType['items'] }) => {
+// ? Add this section above album image to display track listings of album on hover
+{
+  /* <div className='self-center'>
+  <p className='z-30 md:hover:relative'>
+    Track {track.track_number}/{track.album.total_tracks}
+  </p>
+</div>; */
+}
+
+const TrackCard = async ({
+  track,
+}: {
+  track: SpotifyApiResponseType['items'];
+}) => {
+  // ? figureout how to display artist in track card
+  //? how to display artists in group, images, etc
+  // const artist =
+  //   'artists' in track && (await getArtistById(track.artists[0].id));
+
+  // console.log('Artist: ', artist);
   return (
     <article className='w-full'>
       <div className='flex w-full items-center justify-between gap-4 p-4'>
@@ -13,7 +39,7 @@ const TrackCard = ({ track }: { track: SpotifyApiResponseType['items'] }) => {
             track.artists
               ?.slice(0, 5)
               .map(({ name, id }: SpotifyArtistType) => (
-                <div className='text-primary hover:scale-y-125' key={id}>
+                <div className=' text-primary hover:scale-y-125' key={id}>
                   <Link
                     href={track.external_urls.spotify}
                     target='_blank'
@@ -31,7 +57,7 @@ const TrackCard = ({ track }: { track: SpotifyApiResponseType['items'] }) => {
                 <Link
                   href={track.album.external_urls.spotify}
                   target='_blank'
-                  className='relative h-full w-full overflow-hidden rounded-lg'
+                  className='text-white relative flex h-full w-full overflow-hidden rounded-lg'
                 >
                   <div className='bg-black/10 z-10 w-full py-2 backdrop-opacity-90 max-md:hidden md:absolute md:inline'>
                     <p className='text-white z-30 line-clamp-2 px-4 font-inter text-2xl'>

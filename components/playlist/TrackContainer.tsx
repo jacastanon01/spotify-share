@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { SpotifyApiResponseType, SpotifyArtistType } from '@/types';
 import TrackCard from './TrackCard';
 import ArtistCard from './ArtistCard';
+import spotifyApi from '@/lib/utils/spotifyApi';
 
 const TrackContainer = ({
   track,

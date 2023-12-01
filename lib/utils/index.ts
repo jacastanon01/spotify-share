@@ -2,6 +2,7 @@ import { DefaultSession, Session, getServerSession } from 'next-auth';
 import { authOptions } from './authOptions';
 import spotifyApi from './spotifyApi';
 import { spotifyApiEndpoints } from '@/constants/spotifyEndpoints';
+import { SpotifyArtistType } from '@/types';
 
 export const fetchTracks = async ({
   searchType = 'tracks',
@@ -24,5 +25,19 @@ export const fetchTracks = async ({
 };
 
 export const getArtistById = async (id: string) => {
-  const res = await fetch(`${spotifyApiEndpoints.artists}/${id}`);
+  const { body } = await spotifyApi.getArtist(id);
+  return body;
+  //   const res = await fetch(`${spotifyApiEndpoints.artists}/${id}`);
+};
+
+export const getRecentlyPlayedTracks = async () => {
+  const res = await spotifyApi.getMyRecentlyPlayedTracks();
+  const {
+    body: { items },
+  } = res;
+  items.length > 0 &&
+    items.map((item) => {
+      const playedAt = new Date(item.played_at);
+      console.log(playedAt.getMonth());
+    });
 };

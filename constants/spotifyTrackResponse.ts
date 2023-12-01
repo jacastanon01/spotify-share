@@ -1038,3 +1038,47 @@ export const spotifyArtistResponse = {
   next: 'https://api.spotify.com/v1/me/top/artists?limit=10&offset=10&time_range=long_term',
   previous: null,
 };
+
+export const SpotifyWebApiSingleArtist = {
+  Artist: {
+    external_urls: {
+      spotify: 'https://open.spotify.com/artist/7w29UYBi0qsHi5RTcv3lmA',
+    },
+    followers: { href: null, total: 1952908 },
+    genres: [
+      'art pop',
+      'electronica',
+      'experimental pop',
+      'experimental vocal',
+      'icelandic experimental',
+      'icelandic pop',
+      'icelandic singer-songwriter',
+      'metropopolis',
+      'permanent wave',
+      'trip hop',
+    ],
+    href: 'https://api.spotify.com/v1/artists/7w29UYBi0qsHi5RTcv3lmA',
+    id: '7w29UYBi0qsHi5RTcv3lmA',
+    images: [
+      {
+        height: 640,
+        url: 'https://i.scdn.co/image/ab6761610000e5ebaeb5c04fdd8ec6273850d207',
+        width: 640,
+      },
+      {
+        height: 320,
+        url: 'https://i.scdn.co/image/ab67616100005174aeb5c04fdd8ec6273850d207',
+        width: 320,
+      },
+      {
+        height: 160,
+        url: 'https://i.scdn.co/image/ab6761610000f178aeb5c04fdd8ec6273850d207',
+        width: 160,
+      },
+    ],
+    name: 'Björk',
+    popularity: 63,
+    type: 'artist',
+    uri: 'spotify:artist:7w29UYBi0qsHi5RTcv3lmA',
+  },
+};
