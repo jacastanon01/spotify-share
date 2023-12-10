@@ -33,7 +33,7 @@
   }
 
   .input {
-    @apply bg-inherit out-of-range:text-red-500 hover:bg-white mx-auto inline max-w-fit appearance-none rounded-xl px-[0.1rem] text-primary hover:cursor-pointer focus:outline-none;
+    @apply mx-auto inline max-w-fit appearance-none rounded-xl bg-inherit px-[0.1rem] text-primary out-of-range:text-red-500 hover:bg-white focus:outline-none;
   }
 
   .bg-primary {
