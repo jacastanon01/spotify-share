@@ -12,6 +12,9 @@ import Navbar from '@/components/navbar/Navbar';
 import TrackContainer from '@/components/playlist/TrackContainer';
 import NoAuthHome from '@/components/home/NoAuthHome';
 import FetchTracksFromApi from '@/components/home/FetchTracksFromApi';
+import { MotionDiv } from '@/components/ui/motion/MotionDiv';
+import { containerVariant } from '@/lib/utils/framerMotion';
+import AnimatePresenceContainer from '@/components/ui/motion/AnimatePresence';
 
 export default async function Home({
   searchParams,
@@ -31,7 +34,16 @@ export default async function Home({
       <Navbar />
       <section className='relative mx-auto my-16 flex w-full flex-col gap-5 px-8'>
         <TopTracksForm />
-        <FetchTracksFromApi searchParams={searchParams} />
+        <AnimatePresenceContainer>
+          <MotionDiv
+            variants={containerVariant}
+            initial='hidden'
+            animate='show'
+            exit='exit'
+          >
+            <FetchTracksFromApi searchParams={searchParams} />
+          </MotionDiv>
+        </AnimatePresenceContainer>
       </section>
     </div>
   );

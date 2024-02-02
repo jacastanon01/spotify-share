@@ -11,6 +11,8 @@ import Image from 'next/image';
 import spotifyApi from '@/lib/utils/spotifyApi';
 import { getArtistById } from '@/lib/utils';
 import TrackPreview from '../search/TrackPreview';
+import { itemVariants } from '@/lib/utils/framerMotion';
+import { MotionArticle } from '../ui/motion/MotionArticle';
 
 // ? Add this section above album image to display track listings of album on hover
 {
@@ -33,7 +35,7 @@ const TrackCard = async ({
 
   // console.log('Artist: ', artist);
   return (
-    <article className='w-full'>
+    <MotionArticle variants={itemVariants} className='w-full'>
       <div className='flex w-full items-center justify-between gap-4 p-4'>
         <div className='flex flex-col'>
           {'artists' in track &&
@@ -53,7 +55,7 @@ const TrackCard = async ({
         </div>
         {track && <TrackPreview track={track} />}
       </div>
-    </article>
+    </MotionArticle>
   );
 };
 

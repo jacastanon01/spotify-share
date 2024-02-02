@@ -6,10 +6,15 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { itemVariants } from '@/lib/utils/framerMotion';
+import { MotionArticle } from '../ui/motion/MotionArticle';
 
 const ArtistCard = ({ track }: { track: SpotifyApiResponseType['items'] }) => {
   return (
-    <article className='flex w-full justify-center p-4'>
+    <MotionArticle
+      variants={itemVariants}
+      className='flex w-full justify-center p-4'
+    >
       <Link
         href={track.href}
         target='_blank'
@@ -30,7 +35,7 @@ const ArtistCard = ({ track }: { track: SpotifyApiResponseType['items'] }) => {
           </div>
         )}
       </Link>
-    </article>
+    </MotionArticle>
   );
 };
 

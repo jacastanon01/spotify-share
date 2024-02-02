@@ -33,7 +33,7 @@
   }
 
   .input {
-    @apply mx-auto inline max-w-fit appearance-none rounded-xl bg-inherit px-[0.1rem] text-primary out-of-range:text-red-500 hover:bg-white focus:outline-none;
+    @apply mx-auto inline max-w-min rounded-xl bg-inherit text-primary out-of-range:text-red-500 hover:bg-white focus:outline-none;
   }
 
   .bg-primary {
@@ -57,5 +57,6 @@
     -moz-appearance: none;
     appearance: none;
     margin: 0;
+    padding: 0;
   }
 }

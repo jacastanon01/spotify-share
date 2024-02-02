@@ -1,10 +1,8 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
-import { SpotifyApiResponseType, SpotifyArtistType } from '@/types';
+import { SpotifyApiResponseType } from '@/types';
 import TrackCard from './TrackCard';
 import ArtistCard from './ArtistCard';
-import spotifyApi from '@/lib/utils/spotifyApi';
+import { containerVariant, itemVariants } from '@/lib/utils/framerMotion';
+import { MotionDiv } from '../ui/motion/MotionDiv';
 
 const TrackContainer = ({
   track,
@@ -12,7 +10,12 @@ const TrackContainer = ({
   track: SpotifyApiResponseType['items'];
 }) => {
   return (
-    <div className='mt-4 flex justify-center gap-6 rounded-xl bg-dark-500 sm:mt-14'>
+    <MotionDiv
+      variants={itemVariants}
+      initial='hidden'
+      animate='show'
+      className='mt-4 flex justify-center gap-6 rounded-xl bg-dark-500 sm:mt-14'
+    >
       {track && (
         <>
           {track.type === 'artist' ? (
@@ -22,7 +25,7 @@ const TrackContainer = ({
           )}
         </>
       )}
-    </div>
+    </MotionDiv>
   );
 };
 
