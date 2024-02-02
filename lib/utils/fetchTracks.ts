@@ -10,8 +10,8 @@ export const fetchTracks = async ({
   limit = '10',
 }) => {
   const session = await getServerSession(authOptions);
-  const access = spotifyApi.getAccessToken();
-  console.log('FROM SPOTIFY API', access, searchType);
+  // const access = spotifyApi.getAccessToken();
+  // console.log('FROM SPOTIFY API', access, searchType);
   const res = await fetch(
     `https://api.spotify.com/v1/me/top/${searchType}?time_range=${timeRange}_term&limit=${limit}`,
     {

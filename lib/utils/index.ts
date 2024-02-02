@@ -10,7 +10,7 @@ export const fetchTracks = async ({
   limit = '10',
 }) => {
   const session: Session | null = await getServerSession(authOptions);
-  const access = spotifyApi.getAccessToken();
+  // const access = spotifyApi.getAccessToken();
 
   const url = `${spotifyApiEndpoints.me}/top/${searchType}?time_range=${timeRange}_term&limit=${limit}`;
   const options = {
