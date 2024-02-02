@@ -1,3 +1,5 @@
+'use client';
+
 import { SpotifyApiResponseType } from '@/types';
 import TrackCard from './TrackCard';
 import ArtistCard from './ArtistCard';
@@ -14,6 +16,7 @@ const TrackContainer = ({
       variants={itemVariants}
       initial='hidden'
       animate='show'
+      exit='exit'
       className='mt-4 flex justify-center gap-6 rounded-xl bg-dark-500 sm:mt-14'
     >
       {track && (

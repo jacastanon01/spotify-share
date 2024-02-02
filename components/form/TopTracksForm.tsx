@@ -7,7 +7,7 @@ import { SpotifyApiResponseType } from '@/types';
 
 const TopTracksForm = () => {
   const searchParams = useSearchParams();
-  console.log('search params: ', searchParams.get('searchType'));
+
   const [searchType, setSearchType] = useState(
     searchParams.get('searchType') || 'tracks',
   );
@@ -18,7 +18,6 @@ const TopTracksForm = () => {
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    console.log('CLICK');
     e.preventDefault();
 
     router.push(
@@ -34,7 +33,7 @@ const TopTracksForm = () => {
       onSubmit={handleSubmit}
     >
       <p className=' w-fit space-x-2 rounded-lg bg-dark-500 px-4 py-2 text-2xl max-md:leading-relaxed sm:text-5xl'>
-        Find
+        Find{' '}
         <input
           className='input text-center'
           type='number'
@@ -50,7 +49,7 @@ const TopTracksForm = () => {
           onChange={(e) =>
             setSearchType(e.target.value as 'artists' | 'tracks')
           }
-          className='input'
+          className='input w-fit'
         >
           <option value='artists'>Artists</option>
           <option value='tracks'>Tracks</option>
