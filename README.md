@@ -1,3 +1,5 @@
+To run locally, clone this repo and set up an app with spotify by following [these instructions](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
