@@ -13,7 +13,7 @@ const Navbar = async () => {
   return (
     <header className='mt-5 flex h-[70px] w-full items-center text-light-900'>
       <nav className='flex w-full items-center justify-between p-8'>
-        <div className=' bg-gray-500/20 z-20 mt-[-18px] flex h-[70px] w-[180px] items-center justify-center rounded-lg p-4 backdrop-blur-md'>
+        <div className=' z-20 mt-[-18px] flex h-[70px] w-[180px] items-center justify-center rounded-lg bg-gray-500/20 p-4 backdrop-blur-md'>
           <Link
             href='https://spotify.com'
             target='_blank'

@@ -1,9 +1,9 @@
 /// TODO: Create fetch component to fetch from api
 // TODO: clean up layout
 // TODO: store search params in url for
+import { authOptions } from '@/lib/utils/authOptions';
 import { getServerSession } from 'next-auth';
 
-import { authOptions } from '@/lib/utils/authOptions';
 import { sessionUser } from '../api/auth/[[...nextauth]]/route';
 import TopTracksForm from '@/components/form/TopTracksForm';
 import Navbar from '@/components/navbar/Navbar';

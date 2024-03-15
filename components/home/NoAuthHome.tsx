@@ -19,7 +19,7 @@ const NoAuthHome = () => {
 
         // event handlers can't be passed in server components. For interactivity use client component
       />
-      <div className='text-white px-6 text-lg md:w-2/3'>
+      <div className='px-6 text-lg text-white md:w-2/3'>
         <p>
           In order to share your music, you must authorize your spotify account
           with this application. Spotify provides a third-party client to handle
