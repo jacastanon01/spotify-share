@@ -2,14 +2,11 @@
 // TODO: clean up layout
 // TODO: store search params in url for
 import { getServerSession } from 'next-auth';
-import { Suspense } from 'react';
 
 import { authOptions } from '@/lib/utils/authOptions';
 import { sessionUser } from '../api/auth/[[...nextauth]]/route';
 import TopTracksForm from '@/components/form/TopTracksForm';
-import { fetchTracks } from '@/lib/utils/fetchTracks';
 import Navbar from '@/components/navbar/Navbar';
-import TrackContainer from '@/components/playlist/TrackContainer';
 import NoAuthHome from '@/components/home/NoAuthHome';
 import FetchTracksFromApi from '@/components/home/FetchTracksFromApi';
 import { MotionDiv } from '@/components/ui/motion/MotionDiv';
